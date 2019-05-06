@@ -1,14 +1,10 @@
-let path = require("path");
-let fs = require("fs");
-
-
-
-
 module.exports  =  class MoodledataController{
     
     constructor(){
         try{
-            let model = path.resolve('./../../classes/Model/MoodledataModel.js');
+            let path = require("path");
+            let fs = require("fs");
+            let model = path.resolve('./../../classes/Model/ElasticsearchDataModel.js');
 
             if (fs.existsSync(model)) {
                 let classname = require(model);
@@ -24,5 +20,6 @@ module.exports  =  class MoodledataController{
         const results = await this.modelinstance.getData(table,fields,id);
         return results;
     }
+    
 };
 

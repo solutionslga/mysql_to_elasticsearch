@@ -1,27 +1,24 @@
-let path = require("path");
-let fs = require("fs");
-let esclient  = '';
-let payload = {
-    'cpf':'22091981869',
-    'name':'Marieta',
-    'fullname':'Garcia',
-    'email':'marietagarcia@gmail.com'
-};
-
-classpath = path.resolve('../Controller/PersonaldataController.js');
-client = path.resolve('./../../Drivers/esconnection.js');
-
-if (fs.existsSync(client)) {
-    esclient = require(client);
-}else{
-    console.err("client elasticsearch not found");
-}
+const path = require("path");
+const fs = require("fs");
+const classpath = path.resolve('../Controller/ElasticsearchdataController.js');
 
 if (fs.existsSync(classpath)) {
     let classname = require(classpath);
     let classinstance = new classname();
-    classinstance.Insert(esclient,payload);
+    let body = {
+        "username" : "luisaraujo",
+        "firstname" : "Luis G",
+        "lastname" : "de Araujo",
+        "email" : "luis.araujo@plus-it.com.br",
+        "password" : "202cb962ac59075b964b07152d234b70",
+        "institution" : "OLIM-20",
+        "department" : "Administração - N"
+    };
+    main(classinstance,'students','default',body,'luisaraujo');
 }
 
-
-
+    
+async function main(classinstance,index,path,body,id){
+    let result = await classinstance.Insert(index,path,body,id);
+    console.log(result);
+}
