@@ -1,4 +1,4 @@
-module.exports  =  class MoodledataModel{
+module.exports  =  class MoodleDataModel{
   
     constructor() {
         let path = require("path");

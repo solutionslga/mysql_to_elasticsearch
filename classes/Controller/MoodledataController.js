@@ -4,7 +4,7 @@ module.exports  =  class MoodledataController{
         try{
             let path = require("path");
             let fs = require("fs");
-            let model = path.resolve('./../../classes/Model/ElasticsearchDataModel.js');
+            let model = path.resolve('./../../classes/Model/MoodleDataModel.js');
 
             if (fs.existsSync(model)) {
                 let classname = require(model);

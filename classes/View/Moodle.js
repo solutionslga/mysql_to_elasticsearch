@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const moodleclasspath = path.resolve('../Controller/MoodledataController.js');
-const personaldatapath = path.resolve('../Controller/PersonaldataController.js');
+const personaldatapath = path.resolve('../Controller/ElasticsearchdataController.js');
 const esclientpath = path.resolve('./../../Drivers/esconnection.js');
 
 
@@ -20,8 +20,7 @@ if (fs.existsSync(moodleclasspath)) {
     main(mclient,pclient,esclient);
 }
  
-async function main(mclient,pclient,esclient){
-    console.log(pclient);
+async function main(mclient,pclient){
     let rows = await mclient.getData('mdl_user','username,password,firstname,lastname,email,institution,department');
     if(rows.length > 2){
         for(let row in rows){
@@ -34,8 +33,8 @@ async function main(mclient,pclient,esclient){
                 "institution":rows[row].institution,
                 "department":rows[row].department
             };
-            let resp = await pclient.Insert(esclient,payload);
-            
+            let resp = await pclient.Insert('students','default',payload,rows[row].username);
+            console.log(resp);
         }
     }
 };

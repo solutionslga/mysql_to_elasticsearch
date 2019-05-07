@@ -11,13 +11,12 @@ module.exports  =  class ElasticsearchdataController{
                 this.modelinstance = new classname();
             }
         }catch(e){
-            console.log("error => model not found",e);
+            return "error => model not found",e;
         }
     }
     
     async Get(index,type,id){
-        const results = await this.modelinstance.Get(index,type,id);
-        return results;
+        return await this.modelinstance.Get(index,type,id);
     }
     
     async createIndices(index){
@@ -36,25 +35,19 @@ module.exports  =  class ElasticsearchdataController{
         let getdata = await this.Get(index,type,id);
        
         if(!getdata){
-            const insert = await this.modelinstance.Insert(index,type,body,id);
-            return insert;
+            return await this.modelinstance.Insert(index,type,body,id);
         }else{
-            const update = await this.Update(index,type,body,id);
-            return update;
+            return await this.Update(index,type,body,id);
         }
     }
-    
     async Delete(index,type,id){
-        const results = await this.modelinstance.Delete(index,type,id);
-        return results;
+        return await this.modelinstance.Delete(index,type,id);
     }
     async Search(index,type,body){
-        const results = await this.modelinstance.Insert(index,type,body);
-        return results;
+        return await this.modelinstance.Insert(index,type,body);
     }
     async Update(index,type,body,id){
-        const results = await this.modelinstance.Update(index,type,body,id);
-        return results;
+        return await this.modelinstance.Update(index,type,body,id);
     }
     
     

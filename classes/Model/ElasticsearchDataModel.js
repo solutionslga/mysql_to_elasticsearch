@@ -12,8 +12,20 @@ module.exports  =  class ElasticsearchDataModel{
             }
         }catch(e){
             console.log("Error => elasticsearch driver not found");
+            return;
         }
 
+    }
+    async createIndices(index){
+        try{
+            const result = await this.client.indices.create({
+                index:index
+                });
+                return result;
+        }catch(e){
+            return e.toString();
+        }
+        
     }
     
     async Get(path,type,id){
