@@ -3,7 +3,7 @@ module.exports  =  class MoodleDataModel{
     constructor() {
         let path = require("path");
         let fs = require("fs");
-        this.mysqlclient = path.resolve('./../../Drivers/mysqlconnection.js');
+        this.mysqlclient = path.resolve('./../config.js');
 
         try{
             if (fs.existsSync(this.mysqlclient)) {
@@ -11,7 +11,7 @@ module.exports  =  class MoodleDataModel{
                 this.connect = this.setConn(conn);
             }
         }catch(e){
-            console.log("Error => mysql driver not found");
+            return "Error => mysql driver not found";
         }
 
     }
@@ -32,7 +32,7 @@ module.exports  =  class MoodleDataModel{
             return rows;
             
         }catch(e){
-            console.log("error => mysql connect found or query error",e);
+            return "error => mysql connect found or query error",e;
         }
     }
     
@@ -42,11 +42,11 @@ module.exports  =  class MoodleDataModel{
             
             return await conn.connect(function(err){
                 if(err) return console.log(err);
-                console.log("connected");
+                return "connected";
             });
           
         }catch(e){
-            console.log("error => invalid mysql connect",e);
+            return "error => invalid mysql connect",e;
         }
     }
     

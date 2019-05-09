@@ -12,7 +12,7 @@ module.exports  =  class MoodledataController{
             }
             
         }catch(e){
-            console.log("error => model not found",e);
+            return "error => model not found",e;
         }
     }
   

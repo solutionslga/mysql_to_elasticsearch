@@ -1,7 +1,7 @@
 /nbproject/private/
 /vendor
 /composer.lock
-/config.php
+/config.js
 /nbproject/
 .idea/
 node_modules/

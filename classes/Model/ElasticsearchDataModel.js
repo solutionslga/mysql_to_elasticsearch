@@ -3,7 +3,7 @@ module.exports  =  class ElasticsearchDataModel{
     constructor() {
         let path = require("path");
         let fs = require("fs");
-        let esclient = path.resolve('./../../Drivers/esconnection.js');
+        let esclient = path.resolve('./../config.js');
         try{
             if (fs.existsSync(esclient)) {
                 console.log(esclient);
@@ -37,13 +37,12 @@ module.exports  =  class ElasticsearchDataModel{
             });
             return result;
         }catch(e){
-            return false;
+            return e.toString();
         }   
     }
     
     async Delete(index,type,id){
         try{
-            console.log("meu id =>",id);
             const result = await this.client.delete({
                 index: index,
                 type: type,
@@ -65,7 +64,7 @@ module.exports  =  class ElasticsearchDataModel{
             }
             return false;
         }catch(e){
-            return false;
+            return e.toString();
         }
     }
     
@@ -83,16 +82,16 @@ module.exports  =  class ElasticsearchDataModel{
         }
     }
     
-    async Search(body){
+    async Search(index,type,body){
         try{
             const result = await this.client.search({
-                index: 'students',
-                type: 'default',
+                index: index,
+                type: type,
                 body: body
             });
-            console.log(result);
+            return result;
         }catch(e){
-            console.log(e.toString());
+            return e.toString();
         }   
     }
     
@@ -106,7 +105,7 @@ module.exports  =  class ElasticsearchDataModel{
             });
             return result;
         }catch(e){
-            console.log(e.toString());
+            return e.toString();
         }
     }
     

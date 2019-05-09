@@ -44,7 +44,7 @@ module.exports  =  class ElasticsearchdataController{
         return await this.modelinstance.Delete(index,type,id);
     }
     async Search(index,type,body){
-        return await this.modelinstance.Insert(index,type,body);
+        return await this.modelinstance.Search(index,type,body);
     }
     async Update(index,type,body,id){
         return await this.modelinstance.Update(index,type,body,id);

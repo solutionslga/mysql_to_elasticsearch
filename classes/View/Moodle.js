@@ -2,22 +2,17 @@ const path = require("path");
 const fs = require("fs");
 const moodleclasspath = path.resolve('../Controller/MoodledataController.js');
 const personaldatapath = path.resolve('../Controller/ElasticsearchdataController.js');
-const esclientpath = path.resolve('./../../Drivers/esconnection.js');
-
 
 if (fs.existsSync(personaldatapath)) {
     let pclassname = require(personaldatapath);
     var pclient = new pclassname();
 }
 
-if (fs.existsSync(esclientpath)) {
-    var esclient = require(esclientpath);
-}
  
 if (fs.existsSync(moodleclasspath)) {
     let mclassname = require(moodleclasspath);
     const mclient = new mclassname();
-    main(mclient,pclient,esclient);
+    main(mclient,pclient);
 }
  
 async function main(mclient,pclient){
