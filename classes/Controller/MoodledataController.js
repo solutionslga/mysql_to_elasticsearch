@@ -17,7 +17,9 @@ module.exports  =  class MoodledataController{
     }
   
     async getData(table,fields,id){
-        const results = await this.modelinstance.getData(table,fields,id);
+        let posfix = (typeof id !== "undefined") ? `where id= ${id}`  : '';
+        let query = ` SELECT ${fields} FROM ${table} ${posfix}`;
+        const results = await this.modelinstance.getData(query);
         return results;
     }
     
